@@ -20,6 +20,20 @@ var atm=new function() {
            return;
        }
 
+        if(document.getElementById('2000_notes').value<0||document.getElementById('500_notes').value<0||document.getElementById('100_notes').value<0)
+        {
+            alert("Negative Value Not Allowed");
+            return;
+        }
+
+
+        if(document.getElementById('2000_notes').value==0&&document.getElementById('500_notes').value==0&&document.getElementById('100_notes').value==0)
+        {
+            alert("Enter Some Amount");
+            return;
+        }
+
+
         this.tt_count = document.getElementById('2000_notes').value;
         this.fh_count = document.getElementById('500_notes').value;
         this.oh_count = document.getElementById('100_notes').value;
@@ -81,7 +95,7 @@ var atm=new function() {
             }
 
             var total=(wtc*2000)+(wfc*500)+(whc*100);
-           alert(total);
+
             if(total==withdraw_amt)
             {
                 this.tt_count-=wtc;
