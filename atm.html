@@ -1,0 +1,98 @@
+<html>
+<head>
+    <title> To The New ATM</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="adding_money.js"></script>
+</head>
+<style>
+
+</style>
+<body>
+<div>
+    <img src="logo.png" style="width:150px;height:150px"><span style="display:inline-block;margin-left:20px"><h1><b>A</b>utomated <b>T</b>eller <b>M</b>achine</h1></span>
+</div>
+<div class="container"  >
+    <div class="row" >
+        <div class="col-md-6" style="border-right:thick solid black">
+            <h2 style="text-align:center">STATS..</h2>
+            <table class="table table-bordered" >
+                <thead>
+                <tr>
+                    <th>Amount</th>
+                    <th>2000</th>
+                    <th>500</th>
+                    <th>100</th>
+                    <th>Left</th>
+
+                </tr>
+                </thead>
+            <tbody>
+
+            </tbody>
+            </table>
+        </div>
+
+        <div class="col-md-6 "  >
+            <h2 style="text-align:center">CUSTOMER VIEW</h2>
+            <form class="form-horizontal" onsubmit="return false">
+
+                <div class="form-group"  >
+                    <label class="control-label col-sm-2" for="amount">Amount</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" name="amount" id="amount" placeholder="Enter Amount" required />
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="float:right" onclick="atm.withdraw()">WITHDRAW</button>
+
+            </form>
+        </div>
+    </div>
+
+    <div class="row" style="margin-top:70px">
+        <div class="col-md-6" style="border-right:thick solid black">
+<h2 style="text-align:center">FILL ATM</h2>
+                <form id="deposit_form" onsubmit="return false" class="form-horizontal">
+
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="2000_notes">2000</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="2000_notes" id="2000_notes" placeholder="Enter 2000 notes"  />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="500_notes">500</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="500_notes" id="500_notes" placeholder="Enter 500 notes" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="100_notes">100</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="100_notes" id="100_notes" placeholder="Enter 100 notes"  />
+                        </div>
+                    </div>
+
+
+                    <button type="submit" id="formSave" class="btn btn-success add-row" style="float:right" onclick="atm.addMoney()">Deposit</button>
+                </form>
+
+        </div>
+
+        <div class="col-md-6">
+
+
+        </div>
+    </div>
+    </div>
+<div style="text-align:center">
+<MARQUEE >
+<h3>ENJOY </h3>
+</MARQUEE>
+</div>
+</body>
+</html>
