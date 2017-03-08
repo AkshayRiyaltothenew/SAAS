@@ -56,6 +56,11 @@ var atm=new function() {
         $("table tbody").append(markup);
         $("#error_message").html("");
         this.flag=1;
+        
+        $("#2000_notes").val("");
+        $("#500_notes").val("");
+        $("#100_notes").val("");
+        $("#50_notes").val("");
     }
 
         
@@ -249,5 +254,7 @@ var atm=new function() {
          var markup = "<tr><td style='color: red'>" + withdraw_amt + "</td><td style='color:red'>" + this.tt_count + "</td><td style='color:red'>" + this.fh_count + "</td><td style='color:red'>" + this.oh_count +  "</td><td style='color:red'>" + this.f_count +"</td><td style='color:red'>" + this.current_Balance + "</td></tr>";
         $("table tbody").append(markup);
         $("#error_message").html("");
+        
+        $("#amount").val("");
     };
 }
