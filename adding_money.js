@@ -1,10 +1,8 @@
-/**
- * Created by akshay on 7/3/17.
- */
 var atm=new function() {
     this.tt_count = 0;
     this.fh_count = 0;
     this.oh_count = 0;
+    this.f_count=0;
     this.current_Balance = 0;
     this.max_limit = 25000;
     this.flag=0;
@@ -14,26 +12,25 @@ var atm=new function() {
            alert("Amount can be deposited only once");
            return;
        }
-        if(isNaN(document.getElementById('2000_notes').value)||isNaN(document.getElementById('500_notes').value)||isNaN(document.getElementById('100_notes').value))
+        if(isNaN(document.getElementById('2000_notes').value)||isNaN(document.getElementById('500_notes').value)||isNaN(document.getElementById('100_notes').value)||isNaN(document.getElementById('50_notes').value))
         {
             alert("Please enter only Numbers ");
             return;
         }
 
-        if(document.getElementById('2000_notes').value.length==0||document.getElementById('500_notes').value.length==0||document.getElementById('100_notes').value.length==0)
+        if(document.getElementById('2000_notes').value.length==0||document.getElementById('500_notes').value.length==0||document.getElementById('100_notes').value.length==0||document.getElementById('50_notes').value.length==0)
        {
            alert("All fields are required");
            return;
        }
 
-        if(document.getElementById('2000_notes').value<0||document.getElementById('500_notes').value<0||document.getElementById('100_notes').value<0)
+        if(document.getElementById('2000_notes').value<0||document.getElementById('500_notes').value<0||document.getElementById('100_notes').value<0||document.getElementById('50_notes').value<0)
         {
             alert("Negative Value Not Allowed");
             return;
         }
 
-
-        if(document.getElementById('2000_notes').value==0&&document.getElementById('500_notes').value==0&&document.getElementById('100_notes').value==0)
+                if(document.getElementById('2000_notes').value==0&&document.getElementById('500_notes').value==0&&document.getElementById('100_notes').value==0&&document.getElementById('50_notes').value==0)
         {
             alert("Enter Some Amount");
             return;
@@ -43,10 +40,10 @@ var atm=new function() {
         this.tt_count = parseInt(document.getElementById('2000_notes').value);
         this.fh_count = parseInt(document.getElementById('500_notes').value);
         this.oh_count = parseInt(document.getElementById('100_notes').value);
+        this.f_count = parseInt(document.getElementById('50_notes').value);
+        this.current_Balance = (this.tt_count * 2000) + (this.fh_count * 500) + (this.oh_count * 100)+(this.f_count*50);
 
-        this.current_Balance = (this.tt_count * 2000) + (this.fh_count * 500) + (this.oh_count * 100);
-
-        var markup = "<tr><td style='color:#00A000'>" + this.current_Balance + "</td><td style='color:#00A000'>" + this.tt_count + "</td><td style='color:#00A000'>" + this.fh_count + "</td><td style='color:#00A000'>" + this.oh_count + "</td><td style='color:#00A000'>" + this.current_Balance + "</td></tr>";
+        var markup = "<tr><td style='color:#00A000'>" + this.current_Balance + "</td><td style='color:#00A000'>" + this.tt_count + "</td><td style='color:#00A000'>" + this.fh_count + "</td><td style='color:#00A000'>" + this.oh_count +"</td><td style='color:#00A000'>" + this.f_count+ "</td><td style='color:#00A000'>" + this.current_Balance + "</td></tr>";
         $("table tbody").append(markup);
         this.flag=1;
     }
@@ -67,7 +64,7 @@ var atm=new function() {
               return;
           }
 
-          if(withdraw_amt%100!=0)
+          if(withdraw_amt%50!=0)
           {
               alert("Amount should be in multiple of 100");
 
@@ -76,8 +73,8 @@ var atm=new function() {
           }
         if(withdraw_amt>=2000)
         {
-            var wtc=0,wfc=0,whc=0;
-            var wa=withdraw_amt, tc=this.tt_count,fc=this.fh_count,hc=this.oh_count;
+            var wtc=0,wfc=0,whc=0,wfnc=0;
+            var wa=withdraw_amt, tc=this.tt_count,fc=this.fh_count,hc=this.oh_count,fnc=this.f_count;
 
             while(tc>0&&wa>=2000)
             {
@@ -96,17 +93,23 @@ var atm=new function() {
             while(hc>0&&wa>=100) {
                 whc++;
                 wa -= 100;
-                hc--
+                hc--;
 
             }
+             while(fnc>0&&wa>=50) {
+                wfnc++;
+                wa -= 50;
+                fnc--;
+            }
 
-            var total=(wtc*2000)+(wfc*500)+(whc*100);
+             var total=(wtc*2000)+(wfc*500)+(whc*100)+(wfnc*50);
 
             if(total==withdraw_amt)
             {
                 this.tt_count-=wtc;
                 this.fh_count-=wfc;
                 this.oh_count-=whc;
+                this.f_count-=wfnc;
                 this.current_Balance-=withdraw_amt;
             }
             else{
@@ -121,8 +124,8 @@ var atm=new function() {
 
        else if(withdraw_amt>=500)
         {
-            var wtc=0,wfc=0,whc=0;
-            var wa=withdraw_amt, tc=this.tt_count,fc=this.fh_count,hc=this.oh_count;
+            var wtc=0,wfc=0,whc=0,wfnc=0;
+            var wa=withdraw_amt, tc=this.tt_count,fc=this.fh_count,hc=this.oh_count,fnc=this.f_count;
 
 
             while(fc>0&&wa>=500)
@@ -130,23 +133,27 @@ var atm=new function() {
                 wfc++;
                 wa-=500;
                 fc--;
-
             }
 
             while(hc>0&&wa>=100) {
                 whc++;
                 wa -= 100;
                 hc--;
-
+            }
+             while(fnc>0&&wa>=50) {
+                wfnc++;
+                wa -= 50;
+                fnc--;
             }
 
-            var total=(wtc*2000)+(wfc*500)+(whc*100);
+             var total=(wtc*2000)+(wfc*500)+(whc*100)+(wfnc*50);
 
             if(total==withdraw_amt)
             {
                 this.tt_count-=wtc;
                 this.fh_count-=wfc;
                 this.oh_count-=whc;
+                this.f_count-=wfnc;
                 this.current_Balance-=withdraw_amt;
             }
             else{
@@ -155,30 +162,30 @@ var atm=new function() {
             }
 
         }
-
-
-
-
        else if(withdraw_amt>=100)
         {
-            var wtc=0,wfc=0,whc=0;
-            var wa=withdraw_amt, tc=this.tt_count,fc=this.fh_count,hc=this.oh_count;
+           var wtc=0,wfc=0,whc=0,wfnc=0;
+            var wa=withdraw_amt, tc=this.tt_count,fc=this.fh_count,hc=this.oh_count,fnc=this.f_count;
 
 
             while(hc>0&&wa>=100) {
                 whc++;
                 wa -= 100;
                 hc--;
-
             }
-
-            var total=(wtc*2000)+(wfc*500)+(whc*100);
+            while(fnc>0&&wa>=50) {
+                wfnc++;
+                wa -= 50;
+                fnc--;
+            }
+             var total=(wtc*2000)+(wfc*500)+(whc*100)+(wfnc*50);
 
             if(total==withdraw_amt)
             {
                 this.tt_count-=wtc;
                 this.fh_count-=wfc;
                 this.oh_count-=whc;
+                this.f_count-=wfnc;
                 this.current_Balance-=withdraw_amt;
             }
             else{
@@ -187,38 +194,40 @@ var atm=new function() {
             }
 
         }
+        else if(withdraw_amt>=50)
+        {
+            var wtc=0,wfc=0,whc=0,wfnc=0;
+            var wa=withdraw_amt, tc=this.tt_count,fc=this.fh_count,hc=this.oh_count,fnc=this.f_count;
+
+            while(fnc>0&&wa>=50) {
+                wfnc++;
+                wa -= 50;
+                fnc--;
+            }
+        
+            var total=(wtc*2000)+(wfc*500)+(whc*100)+(wfnc*50);
+
+            if(total==withdraw_amt)
+            {
+                this.tt_count-=wtc;
+                this.fh_count-=wfc;
+                this.oh_count-=whc;
+                this.f_count-=wfnc;
+                this.current_Balance-=withdraw_amt;
+            }
+            else{
+                alert("Transaction cannot be processed");
+                return ;
+            }
+    }
 
    else
         {
             alert("Transaction cannot be processed");
             return;
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        var markup = "<tr><td style='color: red'>" + withdraw_amt + "</td><td style='color:red'>" + this.tt_count + "</td><td style='color:red'>" + this.fh_count + "</td><td style='color:red'>" + this.oh_count + "</td><td style='color:red'>" + this.current_Balance + "</td></tr>";
+         var markup = "<tr><td style='color: red'>" + withdraw_amt + "</td><td style='color:red'>" + this.tt_count + "</td><td style='color:red'>" + this.fh_count + "</td><td style='color:red'>" + this.oh_count +  "</td><td style='color:red'>" + this.f_count +"</td><td style='color:red'>" + this.current_Balance + "</td></tr>";
         $("table tbody").append(markup);
 
-        //console.log(this.currentAmount+"\n"+res+"\n"+no_of_2k+"\n"+no_of_5h+"\n"+no_of_h+"\n"+left+"\n");
     };
-
-
-
-
-
-
-
 }

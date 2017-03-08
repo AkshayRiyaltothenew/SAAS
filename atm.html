@@ -24,6 +24,7 @@
                     <th>2000</th>
                     <th>500</th>
                     <th>100</th>
+                    <th>50</th>
                     <th>Left</th>
 
                 </tr>
@@ -42,6 +43,7 @@
                     <label class="control-label col-sm-2" for="amount">Amount</label>
                     <div class="col-sm-8">
                         <input type="text"  class="form-control" name="amount" id="amount" maxlength="5" placeholder="Enter Amount" onkeypress='return event.charCode >= 48 && event.charCode <= 57'  required />
+                        <p style="color: red;font-size: small;">*Maximum withdrawl limit Rs.25000/-</p>
                     </div>
                 </div>
 
@@ -77,6 +79,12 @@
                         </div>
                     </div>
 
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="100_notes">50</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="50_notes" id="50_notes" maxlength="5" onkeypress='return event.charCode >= 48 && event.charCode <= 57' placeholder="Enter 50 notes"  />
+                        </div>
+                    </div>
 
                     <button type="submit" id="formSave" class="btn btn-success add-row" style="float:right" onclick="atm.addMoney()">Deposit</button>
                 </form>
