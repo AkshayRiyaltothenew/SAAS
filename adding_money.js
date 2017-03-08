@@ -61,6 +61,11 @@ var atm=new function() {
         $("#500_notes").val("");
         $("#100_notes").val("");
         $("#50_notes").val("");
+        document.getElementById("2000_notes").disabled = true;
+        document.getElementById("500_notes").disabled = true;
+        document.getElementById("100_notes").disabled = true;
+        document.getElementById("50_notes").disabled = true;
+        document.getElementById("formSave").disabled = true;
     }
 
         
