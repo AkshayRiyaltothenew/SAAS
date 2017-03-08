@@ -40,9 +40,9 @@ var atm=new function() {
         }
 
 
-        this.tt_count = document.getElementById('2000_notes').value;
-        this.fh_count = document.getElementById('500_notes').value;
-        this.oh_count = document.getElementById('100_notes').value;
+        this.tt_count = parseInt(document.getElementById('2000_notes').value);
+        this.fh_count = parseInt(document.getElementById('500_notes').value);
+        this.oh_count = parseInt(document.getElementById('100_notes').value);
 
         this.current_Balance = (this.tt_count * 2000) + (this.fh_count * 500) + (this.oh_count * 100);
 
@@ -53,7 +53,7 @@ var atm=new function() {
 
 
     this.withdraw=function() {
-      var withdraw_amt= document.getElementById('amount').value;
+      var withdraw_amt= parseInt(document.getElementById('amount').value);
 
           if(this.current_Balance==0)
           {
