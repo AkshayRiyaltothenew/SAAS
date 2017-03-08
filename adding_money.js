@@ -123,13 +123,14 @@ var atm=new function() {
             {
                 wfc++;
                 wa-=500;
+                fc--;
 
             }
 
             while(hc>0&&wa>=100) {
                 whc++;
                 wa -= 100;
-
+                hc--;
 
             }
 
@@ -161,7 +162,7 @@ var atm=new function() {
             while(hc>0&&wa>=100) {
                 whc++;
                 wa -= 100;
-
+                hc--;
 
             }
 
