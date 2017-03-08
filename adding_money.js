@@ -14,7 +14,13 @@ var atm=new function() {
            alert("Amount can be deposited only once");
            return;
        }
-       if(document.getElementById('2000_notes').value.length==0||document.getElementById('500_notes').value.length==0||document.getElementById('100_notes').value.length==0)
+        if(isNaN(document.getElementById('2000_notes').value)||isNaN(document.getElementById('500_notes').value)||isNaN(document.getElementById('100_notes').value))
+        {
+            alert("Please enter only Numbers ");
+            return;
+        }
+
+        if(document.getElementById('2000_notes').value.length==0||document.getElementById('500_notes').value.length==0||document.getElementById('100_notes').value.length==0)
        {
            alert("All fields are required");
            return;
