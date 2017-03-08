@@ -9,30 +9,40 @@ var atm=new function() {
     this.addMoney = function () {
        if(this.flag)
        {
-           alert("Amount can be deposited only once");
+
+           $("#error_message").html("*Amount can be deposited only once.");
+
            return;
        }
         if(isNaN(document.getElementById('2000_notes').value)||isNaN(document.getElementById('500_notes').value)||isNaN(document.getElementById('100_notes').value)||isNaN(document.getElementById('50_notes').value))
         {
-            alert("Please enter only Numbers ");
+
+            $("#error_message").html("*Only Integer values can be inserted.");
+
+
             return;
         }
 
         if(document.getElementById('2000_notes').value.length==0||document.getElementById('500_notes').value.length==0||document.getElementById('100_notes').value.length==0||document.getElementById('50_notes').value.length==0)
        {
-           alert("All fields are required");
+
+           $("#error_message").html("*All fields are mandatory.");
+
            return;
        }
 
         if(document.getElementById('2000_notes').value<0||document.getElementById('500_notes').value<0||document.getElementById('100_notes').value<0||document.getElementById('50_notes').value<0)
         {
-            alert("Negative Value Not Allowed");
+            $("#error_message").html("*Negative Values Not Allowed");
+
+
             return;
         }
 
                 if(document.getElementById('2000_notes').value==0&&document.getElementById('500_notes').value==0&&document.getElementById('100_notes').value==0&&document.getElementById('50_notes').value==0)
         {
-            alert("Enter Some Amount");
+            $("#error_message").html("*Enter Some Amount.");
+
             return;
         }
 
@@ -45,6 +55,7 @@ var atm=new function() {
 
         var markup = "<tr><td style='color:#00A000'>" + this.current_Balance + "</td><td style='color:#00A000'>" + this.tt_count + "</td><td style='color:#00A000'>" + this.fh_count + "</td><td style='color:#00A000'>" + this.oh_count +"</td><td style='color:#00A000'>" + this.f_count+ "</td><td style='color:#00A000'>" + this.current_Balance + "</td></tr>";
         $("table tbody").append(markup);
+        $("#error_message").html("");
         this.flag=1;
     }
 
@@ -52,22 +63,29 @@ var atm=new function() {
     this.withdraw=function() {
       var withdraw_amt= parseInt(document.getElementById('amount').value);
 
+        if(document.getElementById('amount').value.length==0)
+        {
+            $("#error_message").html("*Field is mandatory.");
+            return;
+        }
+
           if(this.current_Balance==0)
           {
-              alert("Transaction cannnot be completed");
+              $("#error_message").html("*Sorry!! Transaction cannot be processed. Insufficient Balance.");
+
               return;
           }
 
           if(withdraw_amt > this.current_Balance ||withdraw_amt > this.max_limit||withdraw_amt<=0)
           {
-              alert("Transaction cannnot be completed");
+              $("#error_message").html("*Transaction Cannot be Processed.");
+
               return;
           }
 
           if(withdraw_amt%50!=0)
           {
-              alert("Amount should be in multiple of 100");
-
+              $("#error_message").html("*Amount should be in multiple of 50.");
 
               return ;
           }
@@ -113,7 +131,7 @@ var atm=new function() {
                 this.current_Balance-=withdraw_amt;
             }
             else{
-                alert("Transaction cannot be processed");
+                $("#error_message").html("*Transaction Cannot be Processed.");
                 return ;
             }
 
@@ -157,7 +175,7 @@ var atm=new function() {
                 this.current_Balance-=withdraw_amt;
             }
             else{
-                alert("Transaction cannot be processed");
+                $("#error_message").html("*Transaction Cannot be Processed.");
                 return ;
             }
 
@@ -189,7 +207,7 @@ var atm=new function() {
                 this.current_Balance-=withdraw_amt;
             }
             else{
-                alert("Transaction cannot be processed");
+                $("#error_message").html("*Transaction Cannot be Processed.");
                 return ;
             }
 
@@ -216,18 +234,18 @@ var atm=new function() {
                 this.current_Balance-=withdraw_amt;
             }
             else{
-                alert("Transaction cannot be processed");
+                $("#error_message").html("*Transaction Cannot be Processed.");
                 return ;
             }
     }
 
    else
         {
-            alert("Transaction cannot be processed");
+            $("#error_message").html("*Transaction Cannot be Processed.");
             return;
         }
          var markup = "<tr><td style='color: red'>" + withdraw_amt + "</td><td style='color:red'>" + this.tt_count + "</td><td style='color:red'>" + this.fh_count + "</td><td style='color:red'>" + this.oh_count +  "</td><td style='color:red'>" + this.f_count +"</td><td style='color:red'>" + this.current_Balance + "</td></tr>";
         $("table tbody").append(markup);
-
+        $("#error_message").html("");
     };
 }
